@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <div class="top-menu">
+        <img src="img/user.png" alt="">
+        <div class="text-name">
+          <h4>Ahmad Fajri</h4>
+          <p>Frontend Developer</p>
+        </div>
+      </div>
+      <ul class="menu">
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="user.html">User</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      <div class="top-content">
+        <div class="container">
+          <div class="row justify-content-between">
+            <h3>Tambah User</h3>
+          </div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="row">
+          <form action="" class="form">
+            <div class="form-group">
+              <label for="">Nama</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-inline">
+              <div class="form-group">
+                <label for="">Tempat Lahir</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="">Tanggal Lahir</label>
+                <input type="date" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Jenis Kelamin</label>
+              <br>
+              <input type="radio" name="jk" value="L"> Laki-laki
+              <input type="radio" name="jk" value="P"> Perempuan
+            </div>
+            <div class="form-group">
+              <label for="">Alamat</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="">Pekerjaan</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <button type="button" class="btn btn-green">Simpan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
