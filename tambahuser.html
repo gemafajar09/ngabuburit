@@ -11,6 +11,7 @@
 
 </head>
 <body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <div class="wrapper">
     <div class="sidebar">
       <div class="top-menu">
@@ -38,39 +39,92 @@
           <form action="" class="form">
             <div class="form-group">
               <label for="">Nama</label>
-              <input type="text" class="form-control">
+              <input id="nama" type="text" class="form-control">
             </div>
             <div class="form-inline">
               <div class="form-group">
                 <label for="">Tempat Lahir</label>
-                <input type="text" class="form-control">
+                <input id="tempat" type="text" class="form-control">
               </div>
               <div class="form-group">
                 <label for="">Tanggal Lahir</label>
-                <input type="date" class="form-control">
+                <input id="tanggal" type="date" class="form-control">
               </div>
             </div>
             <div class="form-group">
               <label for="">Jenis Kelamin</label>
               <br>
-              <input type="radio" name="jk" value="L"> Laki-laki
-              <input type="radio" name="jk" value="P"> Perempuan
+              <input type="radio" onclick="jeniskel('L')" name="jk" value="L"> Laki-laki
+              <input type="radio" onclick="jeniskel('P')" name="jk" value="P"> Perempuan
             </div>
             <div class="form-group">
               <label for="">Alamat</label>
-              <input type="text" class="form-control">
+              <input id="alamat" type="text" class="form-control">
             </div>
             <div class="form-group">
               <label for="">Pekerjaan</label>
-              <input type="text" class="form-control">
+              <input id="pekerjaan" type="text" class="form-control">
             </div>
             <div class="form-group">
-              <button type="button" class="btn btn-green">Simpan</button>
+              <button onclick="simpan()" type="button" class="btn btn-green">Simpan</button>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
+  <script>
+    // var jk di bawah adalah varible kosong dimana variable jk nantinya akan di isi oleh function jeniskel berdasarkan pilihan jenis kelamin dari inputan
+    var jk;
+
+    // function dibawah berfungsi untuk mengisi variable jk yang nantinya akan dikirim ke serve
+    function jeniskel(jenis)
+    {
+      jk = jenis
+      return jk
+    }
+
+    function simpan()
+    {
+      // var , let , const adalah variable
+      // $('#nama').val() adalah nilai dari element inputan dengan id nama; tanda # adalah id; tanda . adalah class
+      var nama = $('#nama').val()
+      var tempat = $('#tempat').val()
+      var tanggal = $('#tanggal').val()
+      var alamat = $('#alamat').val()
+      var pekerjaan = $('#pekerjaan').val()
+
+      // script dibawah adalah cara mengirim data ke server atau api dengan menggunakan AJAX
+      $.ajax({
+        url: 'simpan.php', // url adalah alamat file tempat aksi yang berinteraksi langsung ke database
+        type: 'POST', // ini badalah bagian method atau type data yang akan di kirim. bisa menggunkana kan GET atau POST
+        data: {
+          "nama":nama,
+          "tempat":tempat,
+          "tanggal": tanggal,
+          "alamat":alamat,
+          "pekerjaan":pekerjaan,
+          "jenis_kelamin":jk
+        },
+        // data di atas alah data atau nilai yang akan kita kirim ke server atau lebih singkatnya akan di kirim ke file simpan.php yg ada pada url di atas
+        dataType: 'json', // data type json adalah deklarasi data yang akan di kirim ke serve. data yg dikirim bisa berbentuk HTML, JSON
+        success: function (res){ // bagian ini adalah nilai respon atau nilai yang dikirim balik oleh simpan.php jika nilainya false atau true
+          console.log(res); // bagian ini untuk melihat hasil response dari simpan.php
+
+          kosong() // function ini berfungsi untuk mengosongkan element inputan
+        }
+      })
+    }
+
+    function kosong()
+    {
+      $('#nama').val('') // maksud dari script di samping bertujuan untuk mengosongkan elemnt inputan nama
+      $('#tempat').val('')
+      $('#tanggal').val('')
+      $('#alamat').val('')
+      $('#pekerjaan').val('')
+    }
+  </script>
+
 </body>
 </html>
